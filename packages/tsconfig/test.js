@@ -4,15 +4,13 @@ import { test } from 'node:test';
 
 const here = new URL('./', import.meta.url);
 
-async function readJsonc(filename) {
+async function readJson(filename) {
   const text = await readFile(new URL(filename, here), 'utf8');
-  // Strip line comments and trailing commas just enough for JSON.parse.
-  const stripped = text.replace(/\/\/.*$/gm, '').replace(/,(\s*[}\]])/g, '$1');
-  return JSON.parse(stripped);
+  return JSON.parse(text);
 }
 
 test('base.json enables the strictness flags AI railguards depend on', async () => {
-  const config = await readJsonc('base.json');
+  const config = await readJson('base.json');
   const opts = config.compilerOptions;
   assert.equal(opts.strict, true);
   assert.equal(opts.noUncheckedIndexedAccess, true);
@@ -25,12 +23,12 @@ test('base.json enables the strictness flags AI railguards depend on', async () 
 });
 
 test('base.json is type-only by default (noEmit)', async () => {
-  const config = await readJsonc('base.json');
+  const config = await readJson('base.json');
   assert.equal(config.compilerOptions.noEmit, true);
 });
 
 test('node.json extends base and switches to NodeNext module resolution', async () => {
-  const config = await readJsonc('node.json');
+  const config = await readJson('node.json');
   assert.equal(config.extends, './base.json');
   assert.equal(config.compilerOptions.module, 'NodeNext');
   assert.equal(config.compilerOptions.moduleResolution, 'NodeNext');
@@ -38,7 +36,7 @@ test('node.json extends base and switches to NodeNext module resolution', async 
 });
 
 test('dom.json extends base and adds the DOM libs', async () => {
-  const config = await readJsonc('dom.json');
+  const config = await readJson('dom.json');
   assert.equal(config.extends, './base.json');
   assert.ok(config.compilerOptions.lib.includes('DOM'));
   assert.ok(config.compilerOptions.lib.includes('DOM.Iterable'));

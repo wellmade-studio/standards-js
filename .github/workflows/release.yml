@@ -34,6 +34,9 @@ jobs:
         run: npm test
 
       - name: Create release PR or publish
+        # Authenticates to npm via OIDC (Trusted Publishing). No NPM_TOKEN needed —
+        # each @wellmade/* package has wellmade-studio/standards-js + release.yml
+        # configured as a trusted publisher on npmjs.com.
         uses: changesets/action@v1
         with:
           publish: npm run release
@@ -42,5 +45,4 @@ jobs:
           title: 'chore: release packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: 'true'
