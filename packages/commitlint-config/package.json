@@ -1,6 +1,6 @@
 {
   "name": "@wellmade/commitlint-config",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Wellmade's shared commitlint config — Conventional Commits with a curated scope list.",
   "license": "MIT",
   "author": {

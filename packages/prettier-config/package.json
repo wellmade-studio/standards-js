@@ -1,6 +1,6 @@
 {
   "name": "@wellmade/prettier-config",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Wellmade's shared Prettier config — sensible 2026 defaults, plain by default with an opt-in Tailwind preset.",
   "license": "MIT",
   "author": {
