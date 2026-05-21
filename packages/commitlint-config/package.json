@@ -1,0 +1,49 @@
+{
+  "name": "@wellmade/commitlint-config",
+  "version": "0.1.0",
+  "description": "Wellmade's shared commitlint config — Conventional Commits with a curated scope list.",
+  "license": "MIT",
+  "author": {
+    "name": "Wellmade",
+    "url": "https://www.wellmade.be"
+  },
+  "homepage": "https://github.com/wellmade-studio/standards-js/tree/main/packages/commitlint-config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wellmade-studio/standards-js.git",
+    "directory": "packages/commitlint-config"
+  },
+  "bugs": {
+    "url": "https://github.com/wellmade-studio/standards-js/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "main": "./index.js",
+  "files": [
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "echo 'no-op'",
+    "format": "echo 'no-op'",
+    "test": "node --test ./test.js"
+  },
+  "dependencies": {
+    "@commitlint/config-conventional": "^19.6.0"
+  },
+  "peerDependencies": {
+    "@commitlint/cli": "^19.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "commitlint",
+    "commitlint-config",
+    "conventional-commits",
+    "wellmade"
+  ]
+}

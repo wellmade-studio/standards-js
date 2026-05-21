@@ -1,0 +1,83 @@
+{
+  "name": "@wellmade/eslint-config",
+  "version": "0.1.0",
+  "description": "Wellmade's shared ESLint flat-config — bug-prevention biased, AI-coding-aware, with opt-in framework layers.",
+  "license": "MIT",
+  "author": {
+    "name": "Wellmade",
+    "url": "https://www.wellmade.be"
+  },
+  "homepage": "https://github.com/wellmade-studio/standards-js/tree/main/packages/eslint-config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wellmade-studio/standards-js.git",
+    "directory": "packages/eslint-config"
+  },
+  "bugs": {
+    "url": "https://github.com/wellmade-studio/standards-js/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "main": "./src/index.js",
+  "files": [
+    "src/",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "echo 'no-op'",
+    "format": "echo 'no-op'",
+    "test": "node --test ./test.js"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.18.0",
+    "@html-eslint/eslint-plugin": "^0.44.0",
+    "@html-eslint/parser": "^0.44.0",
+    "@vitest/eslint-plugin": "^1.1.25",
+    "eslint-import-resolver-typescript": "^3.7.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest": "^28.11.0",
+    "eslint-plugin-jsdoc": "^50.6.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-n": "^17.15.1",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-compiler": "^19.0.0-beta",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-sort-destructure-keys": "^2.0.0",
+    "eslint-plugin-unicorn": "^56.0.1",
+    "globals": "^15.14.0",
+    "typescript-eslint": "^8.20.0"
+  },
+  "peerDependencies": {
+    "@graphql-eslint/eslint-plugin": "^4.4.0",
+    "eslint": "^9.18.0",
+    "eslint-plugin-astro": "^1.3.1",
+    "typescript": "^5.7.0"
+  },
+  "peerDependenciesMeta": {
+    "@graphql-eslint/eslint-plugin": {
+      "optional": true
+    },
+    "eslint-plugin-astro": {
+      "optional": true
+    },
+    "typescript": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "flat-config",
+    "typescript",
+    "react",
+    "wellmade"
+  ]
+}

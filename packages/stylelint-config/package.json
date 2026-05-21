@@ -1,0 +1,55 @@
+{
+  "name": "@wellmade/stylelint-config",
+  "version": "0.1.0",
+  "description": "Wellmade's shared Stylelint config for plain CSS and Tailwind. No SCSS, no legacy CSS-in-JS.",
+  "license": "MIT",
+  "author": {
+    "name": "Wellmade",
+    "url": "https://www.wellmade.be"
+  },
+  "homepage": "https://github.com/wellmade-studio/standards-js/tree/main/packages/stylelint-config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wellmade-studio/standards-js.git",
+    "directory": "packages/stylelint-config"
+  },
+  "bugs": {
+    "url": "https://github.com/wellmade-studio/standards-js/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./tailwind": "./tailwind.js"
+  },
+  "main": "./index.js",
+  "files": [
+    "index.js",
+    "tailwind.js",
+    "rules/",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "echo 'no-op'",
+    "format": "echo 'no-op'",
+    "test": "node --test ./test.js"
+  },
+  "dependencies": {
+    "stylelint-config-standard": "^36.0.1",
+    "stylelint-order": "^7.0.0",
+    "stylelint-semantic-groups": "^1.2.1"
+  },
+  "peerDependencies": {
+    "stylelint": "^16.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "stylelint",
+    "stylelint-config",
+    "css",
+    "tailwind",
+    "wellmade"
+  ]
+}

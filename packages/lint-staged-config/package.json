@@ -1,0 +1,46 @@
+{
+  "name": "@wellmade/lint-staged-config",
+  "version": "0.1.0",
+  "description": "Wellmade's shared lint-staged config — wires up the @wellmade/{eslint,prettier,stylelint}-config trio for pre-commit.",
+  "license": "MIT",
+  "author": {
+    "name": "Wellmade",
+    "url": "https://www.wellmade.be"
+  },
+  "homepage": "https://github.com/wellmade-studio/standards-js/tree/main/packages/lint-staged-config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wellmade-studio/standards-js.git",
+    "directory": "packages/lint-staged-config"
+  },
+  "bugs": {
+    "url": "https://github.com/wellmade-studio/standards-js/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "main": "./index.js",
+  "files": [
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "echo 'no-op'",
+    "format": "echo 'no-op'",
+    "test": "node --test ./test.js"
+  },
+  "peerDependencies": {
+    "lint-staged": "^15.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "lint-staged",
+    "lint-staged-config",
+    "pre-commit",
+    "wellmade"
+  ]
+}

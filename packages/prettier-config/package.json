@@ -1,0 +1,53 @@
+{
+  "name": "@wellmade/prettier-config",
+  "version": "0.1.0",
+  "description": "Wellmade's shared Prettier config — sensible 2026 defaults, plain by default with an opt-in Tailwind preset.",
+  "license": "MIT",
+  "author": {
+    "name": "Wellmade",
+    "url": "https://www.wellmade.be"
+  },
+  "homepage": "https://github.com/wellmade-studio/standards-js/tree/main/packages/prettier-config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wellmade-studio/standards-js.git",
+    "directory": "packages/prettier-config"
+  },
+  "bugs": {
+    "url": "https://github.com/wellmade-studio/standards-js/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./tailwind": "./tailwind.js"
+  },
+  "main": "./index.js",
+  "files": [
+    "index.js",
+    "tailwind.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "echo 'no-op'",
+    "format": "echo 'no-op'",
+    "test": "node --test ./test.js"
+  },
+  "peerDependencies": {
+    "prettier": "^3.4.0",
+    "prettier-plugin-tailwindcss": "^0.6.0"
+  },
+  "peerDependenciesMeta": {
+    "prettier-plugin-tailwindcss": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "prettier",
+    "prettier-config",
+    "wellmade"
+  ]
+}

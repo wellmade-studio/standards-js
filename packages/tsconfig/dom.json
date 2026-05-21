@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "_comment": "Extends @wellmade/tsconfig/base.json with DOM lib. Use for browser apps (React/Vite/Next client side, vanilla browser code). Defers module emit to your bundler.",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "jsx": "preserve",
+    "allowJs": false
+  }
+}
