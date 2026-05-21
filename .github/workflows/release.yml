@@ -33,45 +33,6 @@ jobs:
       - name: Test
         run: npm test
 
-      - name: Debug npm + OIDC trusted-publishing context
-        # Temporary diagnostic step (remove once OIDC publishing is confirmed working).
-        # Prints whether the OIDC env vars are present, what npm sees, what
-        # whoami returns, and what's in the workspace package.json's repository field
-        # (which trusted-publishing identity-matches against).
-        run: |
-          echo "=== OIDC env vars ==="
-          if [ -n "$ACTIONS_ID_TOKEN_REQUEST_URL" ]; then
-            echo "ACTIONS_ID_TOKEN_REQUEST_URL is set ✓"
-          else
-            echo "ACTIONS_ID_TOKEN_REQUEST_URL is MISSING ✗ — id-token: write permission may be denied"
-          fi
-          if [ -n "$ACTIONS_ID_TOKEN_REQUEST_TOKEN" ]; then
-            echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN is set ✓"
-          else
-            echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN is MISSING ✗"
-          fi
-          echo ""
-          echo "=== npm version + registry ==="
-          npm --version
-          npm config get registry
-          echo ""
-          echo "=== npm whoami ==="
-          npm whoami --registry=https://registry.npmjs.org/ || echo "(no auth identity yet — expected at this stage; OIDC auths per-publish)"
-          echo ""
-          echo "=== one package.json repository field (commitlint-config) ==="
-          # npm's trusted-publishing identity-match also looks at the repository URL
-          # in the package being published. If it doesn't match wellmade-studio/standards-js
-          # exactly, OIDC publishes 404.
-          node -e "console.log(JSON.stringify(require('./packages/commitlint-config/package.json').repository, null, 2))"
-          echo ""
-          echo "=== workflow ref + run identity (what npm matches against) ==="
-          echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
-          echo "GITHUB_REF=$GITHUB_REF"
-          echo "GITHUB_WORKFLOW_REF=$GITHUB_WORKFLOW_REF"
-          echo "GITHUB_WORKFLOW=$GITHUB_WORKFLOW"
-          echo "GITHUB_JOB=$GITHUB_JOB"
-          echo "GITHUB_EVENT_NAME=$GITHUB_EVENT_NAME"
-
       - name: Create release PR or publish
         # Authenticates to npm via OIDC (Trusted Publishing). No NPM_TOKEN needed —
         # each @wellmade/* package has wellmade-studio/standards-js + release.yml
