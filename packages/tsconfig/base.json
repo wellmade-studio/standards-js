@@ -28,6 +28,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
 
+    "allowImportingTsExtensions": true,
     "noEmit": true,
     "incremental": true
   }

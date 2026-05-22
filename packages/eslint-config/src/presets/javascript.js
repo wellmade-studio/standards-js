@@ -191,7 +191,11 @@ export const javascriptPreset = {
       { blankLine: 'always', prev: '*', next: 'return' },
       { blankLine: 'always', prev: 'import', next: '*' },
       { blankLine: 'always', prev: '*', next: 'import' },
-      { blankLine: 'never', prev: 'import', next: 'import' },
+      // `simple-import-sort/imports` owns intra-import-group spacing — it
+      // inserts a blank line between groups (e.g. node-builtins vs externals
+      // vs relative). Setting `import → import` to `never` here makes the two
+      // rules fight (autofix loops). Leave it untouched.
+      { blankLine: 'any', prev: 'import', next: 'import' },
     ],
     'sort-destructure-keys/sort-destructure-keys': ['error', { caseSensitive: false }],
 
