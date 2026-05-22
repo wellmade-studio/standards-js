@@ -1,6 +1,6 @@
 {
   "name": "@wellmade/tsconfig",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Wellmade's shared TypeScript configs — strict by default, with `node` and `dom` variants. The bedrock the lint rules sit on.",
   "license": "MIT",
   "author": {
