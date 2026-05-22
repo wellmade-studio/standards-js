@@ -1,0 +1,24 @@
+{
+  "name": "example-node-vitest",
+  "private": true,
+  "type": "module",
+  "description": "Dogfood fixture: Node + TypeScript + Vitest project that consumes the local @wellmade configs via npm workspaces. Validates the configs end-to-end on every PR.",
+  "scripts": {
+    "lint": "eslint .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "build": "echo 'no-op'",
+    "test": "echo 'no-op'"
+  },
+  "prettier": "@wellmade/prettier-config",
+  "devDependencies": {
+    "@wellmade/eslint-config": "*",
+    "@wellmade/prettier-config": "*",
+    "@wellmade/tsconfig": "*",
+    "@types/node": "^22.10.0",
+    "eslint": "^9.18.0",
+    "prettier": "^3.4.0",
+    "typescript": "^5.7.0",
+    "vitest": "^2.1.0"
+  }
+}

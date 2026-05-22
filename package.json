@@ -4,12 +4,15 @@
   "type": "module",
   "description": "Wellmade's shared standards for JS/TS projects — ESLint, Prettier, Stylelint configs (more to come).",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
     "build": "turbo run build",
     "lint": "turbo run lint",
     "format": "turbo run format",
+    "format:check": "turbo run format:check",
+    "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "changeset": "changeset",
     "version": "changeset version",

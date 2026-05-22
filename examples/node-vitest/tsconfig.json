@@ -1,0 +1,4 @@
+{
+  "extends": "@wellmade/tsconfig/node.json",
+  "include": ["src/**/*", "eslint.config.mjs"]
+}
