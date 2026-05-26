@@ -54,6 +54,6 @@ export const nestjsAllowDefaultExports = {
     '**/*.dto.ts',
   ],
   rules: {
-    'import/no-default-export': 'off',
+    'import-x/no-default-export': 'off',
   },
 };

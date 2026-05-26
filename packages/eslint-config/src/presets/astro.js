@@ -32,14 +32,14 @@ export async function astroPreset() {
       rules: {
         ...astroPlugin.configs.recommended.rules,
         // Allow default exports in Astro pages.
-        'import/no-default-export': 'off',
+        'import-x/no-default-export': 'off',
       },
     },
     {
       name: 'wellmade/astro-page-default-exports',
       files: ['**/pages/**/*.astro', '**/layouts/**/*.astro'],
       rules: {
-        'import/no-default-export': 'off',
+        'import-x/no-default-export': 'off',
       },
     },
   ];

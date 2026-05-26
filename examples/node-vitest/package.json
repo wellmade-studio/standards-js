@@ -16,7 +16,7 @@
     "@wellmade/prettier-config": "*",
     "@wellmade/tsconfig": "*",
     "@types/node": "^22.10.0",
-    "eslint": "^9.18.0",
+    "eslint": "^10.0.0",
     "prettier": "^3.4.0",
     "typescript": "^5.7.0",
     "vitest": "^2.1.0"

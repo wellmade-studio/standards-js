@@ -1,5 +1,5 @@
 import js from '@eslint/js';
-import commentsPlugin from 'eslint-plugin-eslint-comments';
+import commentsPlugin from '@eslint-community/eslint-plugin-eslint-comments';
 import sortDestructureKeysPlugin from 'eslint-plugin-sort-destructure-keys';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import { restrictedGlobals } from '../rules/restricted-globals.js';
@@ -16,7 +16,7 @@ import { unicornRules } from '../rules/unicorn.js';
 export const javascriptPreset = {
   name: 'wellmade/javascript',
   plugins: {
-    'eslint-comments': commentsPlugin,
+    '@eslint-community/eslint-comments': commentsPlugin,
     'sort-destructure-keys': sortDestructureKeysPlugin,
     unicorn: unicornPlugin,
   },
@@ -200,11 +200,11 @@ export const javascriptPreset = {
     'sort-destructure-keys/sort-destructure-keys': ['error', { caseSensitive: false }],
 
     // === eslint-comments hygiene ===
-    'eslint-comments/disable-enable-pair': 'error',
-    'eslint-comments/no-aggregating-enable': 'error',
-    'eslint-comments/no-duplicate-disable': 'error',
-    'eslint-comments/no-unused-enable': 'error',
-    'eslint-comments/require-description': ['error', { ignore: ['eslint-enable'] }],
+    '@eslint-community/eslint-comments/disable-enable-pair': 'error',
+    '@eslint-community/eslint-comments/no-aggregating-enable': 'error',
+    '@eslint-community/eslint-comments/no-duplicate-disable': 'error',
+    '@eslint-community/eslint-comments/no-unused-enable': 'error',
+    '@eslint-community/eslint-comments/require-description': ['error', { ignore: ['eslint-enable'] }],
 
     // === Unicorn ===
     ...unicornRules,

@@ -225,7 +225,7 @@ export function typescriptPreset(tsconfigRootDir) {
       files: ['**/*.d.ts'],
       rules: {
         // Declaration files routinely export types/interfaces by default.
-        'import/no-default-export': 'off',
+        'import-x/no-default-export': 'off',
         '@typescript-eslint/naming-convention': 'off',
       },
     },

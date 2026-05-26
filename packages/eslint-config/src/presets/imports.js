@@ -1,40 +1,42 @@
-import importPlugin from 'eslint-plugin-import';
+import importPlugin from 'eslint-plugin-import-x';
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
 
 /**
  * Import ordering, deduplication, and cycle detection.
  *
  * `simple-import-sort` owns *order* (deterministic, no opinions about groups).
- * `eslint-plugin-import` owns *integrity* (no duplicates, no missing files,
- * no cycles, proper extensions).
+ * `eslint-plugin-import-x` owns *integrity* (no duplicates, no missing files,
+ * no cycles, proper extensions). It's a maintained fork of eslint-plugin-import
+ * with first-class ESLint v10 + flat-config support.
  *
  * @type {import('eslint').Linter.Config}
  */
 export const importsPreset = {
   name: 'wellmade/imports',
   plugins: {
-    import: importPlugin,
+    'import-x': importPlugin,
     'simple-import-sort': simpleImportSortPlugin,
   },
   rules: {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
 
-    'import/first': 'error',
-    'import/no-duplicates': ['error', { 'prefer-inline': false }],
-    'import/no-self-import': 'error',
-    'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
-    'import/no-cycle': ['error', { maxDepth: 10, ignoreExternal: true }],
-    'import/no-mutable-exports': 'error',
-    'import/no-absolute-path': 'error',
-    'import/no-empty-named-blocks': 'error',
-    'import/no-default-export': 'error',
-    'import/enforce-node-protocol-usage': ['error', 'always'],
-    'import/extensions': ['error', 'ignorePackages'],
-    'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+    'import-x/first': 'error',
+    'import-x/no-duplicates': ['error', { 'prefer-inline': false }],
+    'import-x/no-self-import': 'error',
+    'import-x/no-useless-path-segments': ['error', { noUselessIndex: true }],
+    'import-x/no-cycle': ['error', { maxDepth: 10, ignoreExternal: true }],
+    'import-x/no-mutable-exports': 'error',
+    'import-x/no-absolute-path': 'error',
+    'import-x/no-empty-named-blocks': 'error',
+    'import-x/no-default-export': 'error',
+    // node: protocol enforcement moved to nodePreset (n/prefer-node-protocol).
+    // import-x doesn't carry an equivalent rule.
+    'import-x/extensions': ['error', 'ignorePackages'],
+    'import-x/consistent-type-specifier-style': ['error', 'prefer-top-level'],
   },
   settings: {
-    'import/resolver': {
+    'import-x/resolver': {
       node: { extensions: ['.js', '.mjs', '.cjs', '.jsx', '.ts', '.tsx', '.mts', '.cts'] },
     },
   },
@@ -71,6 +73,7 @@ export const allowDefaultExports = {
     '**/pages/**/*.{js,ts,jsx,tsx}',
   ],
   rules: {
-    'import/no-default-export': 'off',
+    'import-x/no-default-export': 'off',
   },
 };
+

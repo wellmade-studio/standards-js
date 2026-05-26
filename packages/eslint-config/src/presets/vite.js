@@ -11,7 +11,7 @@ export const vitePreset = [
     name: 'wellmade/vite-config',
     files: ['**/vite.config.{js,mjs,ts,mts}', '**/vitest.config.{js,mjs,ts,mts}'],
     rules: {
-      'import/no-default-export': 'off',
+      'import-x/no-default-export': 'off',
     },
   },
   {
