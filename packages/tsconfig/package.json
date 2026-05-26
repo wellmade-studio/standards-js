@@ -35,7 +35,7 @@
     "test": "node --test ./test.js"
   },
   "peerDependencies": {
-    "typescript": "^5.7.0"
+    "typescript": ">=5.7.0 <7"
   },
   "publishConfig": {
     "access": "public"

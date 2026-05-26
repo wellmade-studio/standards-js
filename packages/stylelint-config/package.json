@@ -40,7 +40,7 @@
     "stylelint-semantic-groups": "^1.2.1"
   },
   "peerDependencies": {
-    "stylelint": "^16.10.0"
+    "stylelint": ">=16.10.0 <18"
   },
   "publishConfig": {
     "access": "public"
