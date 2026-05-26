@@ -1,6 +1,6 @@
 {
   "name": "@wellmade/lint-staged-config",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Wellmade's shared lint-staged config — wires up the @wellmade/{eslint,prettier,stylelint}-config trio for pre-commit.",
   "license": "MIT",
   "author": {
