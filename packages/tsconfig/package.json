@@ -1,6 +1,6 @@
 {
   "name": "@wellmade/tsconfig",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Wellmade's shared TypeScript configs — strict by default, with `node` / `dom` env variants and `nestjs` / `nestjs-spec` / `react` / `vitest` framework presets. The bedrock the lint rules sit on.",
   "license": "MIT",
   "author": {
