@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "_comment": "For Vitest test files. Extends @wellmade/tsconfig/node.json and adds vitest/globals types so `describe`/`it`/`expect` are recognized without explicit imports (relevant when vitest.config has `globals: true`). Vitest itself uses esbuild and works fine with the base.json defaults (verbatimModuleSyntax: true, isolatedModules: true) — no need for the Jest-style relaxations. For browser-side testing-library setups, extend @wellmade/tsconfig/dom.json instead and add vitest/globals to its types array.",
+  "extends": "./node.json",
+  "compilerOptions": {
+    "types": ["node", "vitest/globals"]
+  }
+}

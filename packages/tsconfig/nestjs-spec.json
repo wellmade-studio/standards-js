@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "_comment": "For NestJS spec/Jest configs (`tsconfig.spec.json`). Extends @wellmade/tsconfig/nestjs.json (which already disables verbatimModuleSyntax + isolatedModules + sets module: commonjs). Adds the Jest-resolver-specific override: ts-jest goes through Node's CJS resolver which does not honor package.json#exports maps.",
+  "extends": "./nestjs.json",
+  "compilerOptions": {
+    "resolvePackageJsonExports": false
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "_comment": "For React applications. Extends @wellmade/tsconfig/dom.json (which already adds DOM lib + jsx: preserve). At present this file is effectively an alias of dom.json — it exists because React projects reach for `@wellmade/tsconfig/react` more naturally, and to give future React-specific overrides a stable home without a breaking rename.",
+  "extends": "./dom.json",
+  "compilerOptions": {}
+}

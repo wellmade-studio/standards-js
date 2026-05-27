@@ -1,7 +1,7 @@
 {
   "name": "@wellmade/tsconfig",
   "version": "0.1.4",
-  "description": "Wellmade's shared TypeScript configs — strict by default, with `node` and `dom` variants. The bedrock the lint rules sit on.",
+  "description": "Wellmade's shared TypeScript configs — strict by default, with `node` / `dom` env variants and `nestjs` / `nestjs-spec` / `react` / `vitest` framework presets. The bedrock the lint rules sit on.",
   "license": "MIT",
   "author": {
     "name": "Wellmade",
@@ -20,12 +20,20 @@
   "exports": {
     "./base.json": "./base.json",
     "./node.json": "./node.json",
-    "./dom.json": "./dom.json"
+    "./dom.json": "./dom.json",
+    "./nestjs.json": "./nestjs.json",
+    "./nestjs-spec.json": "./nestjs-spec.json",
+    "./react.json": "./react.json",
+    "./vitest.json": "./vitest.json"
   },
   "files": [
     "base.json",
     "node.json",
     "dom.json",
+    "nestjs.json",
+    "nestjs-spec.json",
+    "react.json",
+    "vitest.json",
     "LICENSE",
     "README.md"
   ],
