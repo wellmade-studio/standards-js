@@ -6,12 +6,12 @@ test('extends @commitlint/config-conventional', () => {
   assert.deepEqual(config.extends, ['@commitlint/config-conventional']);
 });
 
-test('enforces lower-case / sentence-case subjects (catches AI Title Case)', () => {
-  const [level, applicable, allowed] = config.rules['subject-case'];
-  assert.equal(level, 2);
-  assert.equal(applicable, 'always');
-  assert.ok(allowed.includes('sentence-case'));
-  assert.ok(allowed.includes('lower-case'));
+test('no subject-case rule by default (proper nouns + acronyms break it)', () => {
+  assert.equal(
+    config.rules['subject-case'],
+    undefined,
+    'subject-case mis-fires on proper nouns (Rekor, NestJS, JSON) and acronyms — see README',
+  );
 });
 
 test('header-max-length is 100 chars', () => {

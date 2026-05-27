@@ -37,3 +37,20 @@ jobs:
 
       - name: Test
         run: npm test
+
+      - name: Commit message lint (PR commits)
+        if: github.event_name == 'pull_request'
+        run: |
+          npx commitlint \
+            --from "${{ github.event.pull_request.base.sha }}" \
+            --to   "${{ github.event.pull_request.head.sha }}" \
+            --verbose
+
+      - name: Commit message lint (push to main)
+        if: github.event_name == 'push'
+        run: |
+          # Lint the single commit that this push introduced.
+          # For force-pushes or multi-commit pushes, only the tip is
+          # checked here — commitlint scoping for those cases is
+          # documented in the package README.
+          npx commitlint --from HEAD~1 --to HEAD --verbose

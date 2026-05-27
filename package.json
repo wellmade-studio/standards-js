@@ -14,12 +14,15 @@
     "format:check": "turbo run format:check",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
+    "commitlint": "commitlint",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.10",
+    "@commitlint/cli": "^19.6.0",
+    "@wellmade/commitlint-config": "*",
     "turbo": "^2.5.0"
   },
   "engines": {

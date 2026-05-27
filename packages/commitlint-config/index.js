@@ -1,38 +1,44 @@
 /**
  * @type {import('@commitlint/types').UserConfig}
  *
- * Conventional Commits, plus a few rules that catch the AI commit-generator
- * failure modes (Title Case subjects, over-long subjects).
+ * Conventional Commits, plus a small set of rules that keep
+ * `git log --oneline` tidy and catch the most painful AI commit-
+ * generator failure modes.
  *
- * No `scope-enum` rule by default — consumer projects use their own
- * service / module names as scopes (`api`, `dashboard`, etc.) and the
- * config doesn't pretend to know what they are. If you want to enforce
- * an allow-list of scopes for your project, add `scope-enum` in your
- * own `commitlint.config.js`:
+ * Deliberate omissions (each was tried and removed after real-world
+ * friction):
  *
- *     export default {
- *       extends: ['@wellmade/commitlint-config'],
- *       rules: {
- *         'scope-enum': [2, 'always', ['api', 'dashboard', 'deps', 'ci']],
- *       },
- *     };
+ *   - **No `scope-enum`** by default. The previous default enumerated
+ *     wellmade-internal package names as the only allowed scopes,
+ *     which rejected every consumer commit with a service-name scope
+ *     (`feat(api): …`). Consumer projects add their own `scope-enum`
+ *     in their own config — see README.
+ *
+ *   - **No `subject-case`** by default. Originally `['sentence-case',
+ *     'lower-case']` to catch AI Title Case spam. Real-world cost:
+ *     proper nouns and acronyms in subjects (`Rekor`, `PascalCase`,
+ *     `NestJS`, `TypeScript`, `JSON`) all violated the rule. The
+ *     conventional-commits type prefix already signals intentionality,
+ *     and PR review catches the Title Case spam well enough.
+ *
+ *   - **`footer-leading-blank` as warning**, not error. The
+ *     conventional-changelog parser treats any blank line in the body
+ *     as the body→footer boundary, then complains the trailing
+ *     `Co-Authored-By:` line is missing its leading blank. This
+ *     mis-fires on perfectly valid markdown bodies with multiple
+ *     bullet groups — a frequent foot-gun for AI-generated messages.
+ *     Warning keeps the signal without blocking the commit.
+ *
+ * If you want a stricter setup for your project, layer the rules back
+ * in your own `commitlint.config.js`.
  */
 const config = {
   extends: ['@commitlint/config-conventional'],
   rules: {
-    // Subject is lower-case / sentence-case. AI generators love Title Case.
-    'subject-case': [2, 'always', ['sentence-case', 'lower-case']],
-
     // Standard Conventional Commits message shape.
     'body-leading-blank': [2, 'always'],
 
-    // `footer-leading-blank` as a warning, not an error.
-    // The conventional-changelog parser treats any blank line in the
-    // body as the body→footer boundary, then complains that the trailing
-    // `Co-Authored-By:` line is missing its own leading blank. This
-    // mis-fires on perfectly valid markdown bodies with multiple bullet
-    // groups and is a frequent foot-gun for AI-generated messages.
-    // Warning keeps the signal without blocking the commit.
+    // Warning, not error — see file-level note above.
     'footer-leading-blank': [1, 'always'],
 
     // 100-char subject keeps `git log --oneline` tidy.

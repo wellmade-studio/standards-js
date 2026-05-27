@@ -1,8 +1,9 @@
 # @wellmade/commitlint-config
 
-Conventional Commits with the lint rules that catch the
-AI-generated `"Update files"` / `"Title Case Subject Line"` shape
-without locking you into Wellmade's own scope vocabulary.
+Conventional Commits with a minimal set of additional lint rules to
+keep `git log --oneline` tidy, without locking you into Wellmade's
+own scope vocabulary or rejecting subjects that contain proper
+nouns / acronyms.
 
 ## Install
 
@@ -27,10 +28,26 @@ chmod +x .husky/commit-msg
 | Rule                              | Level | Effect                                                                              |
 | --------------------------------- | ----- | ----------------------------------------------------------------------------------- |
 | `@commitlint/config-conventional` | error | The full Conventional Commits baseline (type-enum, subject-empty, etc.).            |
-| `subject-case`                    | error | Subject must be sentence-case or lower-case. No `Title Case`, no `UPPER CASE`.      |
 | `header-max-length: 100`          | error | Keeps `git log --oneline` readable.                                                 |
 | `body-leading-blank`              | error | Blank line between subject and body.                                                |
 | `footer-leading-blank`            | warn  | Blank line between body and footer. **Warning, not error** — see note below.        |
+
+### Why no `subject-case` rule?
+
+Earlier versions enforced `['sentence-case', 'lower-case']` on
+subjects to catch AI-generated `Title Case Subject Line` spam. In
+practice the rule misfired constantly on proper nouns and acronyms
+(`Rekor`, `PascalCase`, `NestJS`, `TypeScript`, `JSON`) and the
+Conventional-Commits type prefix (`feat:`, `chore:`) already signals
+intentionality. Real-world subjects need uppercase. PR review
+catches the AI-spam case well enough.
+
+If your team wants the strict version back, add it to your own
+config:
+
+```js
+'subject-case': [2, 'always', ['sentence-case', 'lower-case']]
+```
 
 ### Note on `footer-leading-blank`
 
