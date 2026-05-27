@@ -1,7 +1,7 @@
 {
   "name": "@wellmade/commitlint-config",
   "version": "0.1.3",
-  "description": "Wellmade's shared commitlint config — Conventional Commits with a curated scope list.",
+  "description": "Wellmade's shared commitlint config — Conventional Commits + AI-shape guards, no opinionated scope-enum.",
   "license": "MIT",
   "author": {
     "name": "Wellmade",

@@ -1,8 +1,8 @@
 # @wellmade/commitlint-config
 
-Conventional Commits, with a curated scope list that matches the
-Wellmade toolchain. Stops the AI-generated `"Update files"` and
-`"Title Case Subject Line"` commits.
+Conventional Commits with the lint rules that catch the
+AI-generated `"Update files"` / `"Title Case Subject Line"` shape
+without locking you into Wellmade's own scope vocabulary.
 
 ## Install
 
@@ -24,32 +24,59 @@ chmod +x .husky/commit-msg
 
 ## What's enforced
 
-| Rule                     | Effect                                                                                  |
-| ------------------------ | --------------------------------------------------------------------------------------- |
-| `@commitlint/config-conventional` | The full Conventional Commits baseline (type-enum, subject-empty, etc.).      |
-| `subject-case`           | Subject must be sentence-case or lower-case. No `Title Case`, no `UPPER CASE`.          |
-| `header-max-length: 100` | Keeps `git log --oneline` readable.                                                     |
-| `body-leading-blank`     | Blank line between subject and body.                                                    |
-| `footer-leading-blank`   | Blank line between body and footer (where `BREAKING CHANGE:` / `Refs:` etc. live).      |
-| `scope-enum`             | If you use a scope, it must be one of the allow-listed package names (see below).       |
+| Rule                              | Level | Effect                                                                              |
+| --------------------------------- | ----- | ----------------------------------------------------------------------------------- |
+| `@commitlint/config-conventional` | error | The full Conventional Commits baseline (type-enum, subject-empty, etc.).            |
+| `subject-case`                    | error | Subject must be sentence-case or lower-case. No `Title Case`, no `UPPER CASE`.      |
+| `header-max-length: 100`          | error | Keeps `git log --oneline` readable.                                                 |
+| `body-leading-blank`              | error | Blank line between subject and body.                                                |
+| `footer-leading-blank`            | warn  | Blank line between body and footer. **Warning, not error** — see note below.        |
+
+### Note on `footer-leading-blank`
+
+Commitlint's conventional-changelog parser treats *any* blank line in
+the body as the body→footer boundary, then complains that the
+trailing footer line (e.g. `Co-Authored-By:`) is missing its leading
+blank. This mis-fires on perfectly valid markdown commit bodies that
+group bullets with blank lines, e.g.:
+
+```
+chore: cleanup
+
+- group 1, line 1
+- group 1, line 2
+
+- group 2, line 1
+- group 2, line 2
+
+Co-Authored-By: someone <noreply@example.com>
+```
+
+That message is well-formed Conventional Commits but the parser
+rejects it. Demoting `footer-leading-blank` to warning keeps the
+signal without blocking the commit. The workaround for the warning
+itself is to keep the body to a single paragraph (no blank line
+between bullet groups).
 
 ## Scopes
 
-Scopes are optional. When present, use one of:
+**This config does not enforce a `scope-enum` rule by default.** You
+can use any scope (or no scope) in your commit messages.
 
-- **Cross-cutting**: `deps`, `release`, `ci`, `docs`, `repo`.
-- **Packages**: `eslint-config`, `prettier-config`, `stylelint-config`,
-  `tsconfig`, `commitlint-config`, `lint-staged-config`, `bedrock`,
-  `cli`, `gh-actions`.
+If your project wants to lock scopes to an allow-list — typically
+your service or module names — add `scope-enum` in your own config:
 
-Examples:
-
+```js
+// commitlint.config.js
+export default {
+  extends: ['@wellmade/commitlint-config'],
+  rules: {
+    'scope-enum': [2, 'always', ['api', 'dashboard', 'deps', 'ci', 'docs']],
+  },
+};
 ```
-feat(eslint-config): add bedrockPreset for opt-in safe-parser redirects
-fix(tsconfig): relax noPropertyAccessFromIndexSignature in dom.json
-chore(deps): bump typescript to 5.7.3
-docs(repo): document the gh-actions plan
-```
 
-To add a scope (e.g. when a new package ships), edit
-[`index.js`](./index.js) and bump the version.
+Inside Wellmade's own toolchain repos (this one included), the
+equivalent rule is opted into per-repo so the cross-cutting
+package-name scopes (`eslint-config`, `bedrock`, etc.) are enforced
+only where they matter, not pushed onto every consumer.
