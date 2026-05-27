@@ -65,6 +65,18 @@ export const reactPreset = {
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
 
+    // === Filename casing for JSX/TSX files ===
+    // Allow both kebab-case and PascalCase. PascalCase is the React-community
+    // convention for component files (`App.tsx`, `BookDetailPage.tsx`); the
+    // base config's kebabCase-only stance produces 100+ rename violations on
+    // any non-greenfield React codebase. This preset's `files` glob narrows
+    // the relaxation to JSX/TSX, so hooks/utils/services elsewhere (typically
+    // `.ts` / `.js`) keep kebab-case.
+    'unicorn/filename-case': [
+      'error',
+      { cases: { kebabCase: true, pascalCase: true } },
+    ],
+
     // === a11y (subset that actually catches real issues) ===
     'jsx-a11y/alt-text': 'error',
     'jsx-a11y/anchor-has-content': 'error',

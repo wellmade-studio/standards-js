@@ -40,6 +40,16 @@ test('basePreset returns a non-empty flat-config array', () => {
   assert.equal(config[0].name, 'wellmade/ignores');
 });
 
+test('reactPreset allows PascalCase filenames (React component convention)', () => {
+  const rule = exports.reactPreset.rules?.['unicorn/filename-case'];
+  assert.ok(rule, 'reactPreset should override unicorn/filename-case');
+  const [level, options] = rule;
+  assert.equal(level, 'error');
+  assert.deepEqual(options, { cases: { kebabCase: true, pascalCase: true } });
+  // Files glob narrows the relaxation to JSX/TSX.
+  assert.deepEqual(exports.reactPreset.files, ['**/*.jsx', '**/*.tsx']);
+});
+
 test('every preset has a stable `name`', () => {
   const named = [
     exports.browserPreset,
