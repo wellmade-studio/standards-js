@@ -30,6 +30,15 @@ Whitelists Tailwind's at-rules (`@tailwind`, `@apply`, `@layer`, `@variants`,
 `@plugin`) and `theme()` / `screen()` / `config()` value functions. Disables
 the strict class-name pattern so utility-heavy templates don't drown in noise.
 
+**Also disables `import-notation`**, because the base config's
+`import-notation: url` (inherited from `stylelint-config-standard`)
+auto-rewrites `@import 'tailwindcss'` to `@import url('tailwindcss')`
+— and Tailwind v4's Vite plugin only recognises the bare-string form
+when injecting preflight + utilities. With the `url()` wrapper, the
+build succeeds but the utility layer is silently skipped (bundle drops
+from ~80 KB to ~19 KB, no error). The `tailwind` preset disables the
+rule so the bare-string convention survives `--fix` passes.
+
 ## What's in it
 
 Rules are grouped into four small files under `rules/`:

@@ -27,3 +27,11 @@ test('tailwind preset whitelists @tailwind and @apply', () => {
 test('tailwind preset disables the strict class-name pattern', () => {
   assert.equal(tailwind.rules['selector-class-pattern'], null);
 });
+
+test('tailwind preset disables import-notation (Tailwind v4 needs bare-string @import)', () => {
+  assert.equal(
+    tailwind.rules['import-notation'],
+    null,
+    'import-notation: url auto-rewrites @import tailwindcss to @import url(tailwindcss), which silently skips the utility layer',
+  );
+});

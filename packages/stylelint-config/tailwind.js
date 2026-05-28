@@ -44,6 +44,16 @@ const config = {
     ],
     // Tailwind users rarely follow class-name conventions on utility-heavy files.
     'selector-class-pattern': null,
+    // `import-notation: url` (inherited from stylelint-config-standard)
+    // auto-rewrites `@import 'tailwindcss'` to `@import url('tailwindcss')`,
+    // which silently breaks Tailwind v4's Vite plugin: the plugin only
+    // recognises the bare-string form when deciding whether to inject
+    // preflight + utilities, so the wrapped form skips the entire
+    // utility layer (build succeeds, bundle is ~80 KB → ~19 KB, no error).
+    // Disabling the rule in the tailwind preset is the right call —
+    // you opted into a framework whose convention conflicts with the
+    // vanilla recommendation; the framework wins inside its own preset.
+    'import-notation': null,
   },
 };
 
