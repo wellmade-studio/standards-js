@@ -1,6 +1,6 @@
 {
   "name": "@wellmade/eslint-config",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Wellmade's shared ESLint flat-config — bug-prevention biased, AI-coding-aware, with opt-in framework layers.",
   "license": "MIT",
   "author": {
