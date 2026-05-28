@@ -1,6 +1,6 @@
 {
   "name": "@wellmade/stylelint-config",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Wellmade's shared Stylelint config for plain CSS and Tailwind. No SCSS, no legacy CSS-in-JS.",
   "license": "MIT",
   "author": {
