@@ -130,6 +130,11 @@ The two `aiRailguards*` presets catch patterns AI assistants reliably produce:
 - **Mega-functions** — `complexity`, `max-lines-per-function`, `max-depth`,
   `max-nested-callbacks`, `max-params` as **warnings** so they surface
   without blocking.
+- **Hallucinated identifiers** — `no-undef` catches made-up imports in
+  **JS files only**. On TS, the rule is off because TypeScript itself
+  is the authority on scope checking and ESLint can't see TS type-only
+  globals; `import-x/no-unresolved` plus TS's strict-mode checks cover
+  the same intent without the false positives.
 
 Every `eslint-disable` requires a description (`eslint-comments/require-description`),
 so disabling a railguard always carries an explicit reason.
@@ -141,8 +146,8 @@ so disabling a railguard always carries an explicit reason.
 | `browserPreset`             | `globals.browser`                                                     |
 | `nodePreset`                | `globals.node` + curated `eslint-plugin-n` rules                      |
 | `reactPreset`               | React + Hooks + a11y + React Compiler (on by default)                 |
-| `jestPreset`                | Jest rules, scoped to `*.test.*` / `*.spec.*` / `__tests__/**`        |
-| `vitestPreset`              | Vitest rules. Same scope as `jestPreset` — pick one.                  |
+| `jestPreset`                | Jest rules, scoped to `*.test.*` / `*.spec.*` / `__tests__/**`. **Doesn't enforce `consistent-test-it`** — `test()`/`it()` is a project preference, not correctness; opt in per-project if you want enforcement. |
+| `vitestPreset`              | Vitest rules. Same scope and same `consistent-test-it` stance as `jestPreset` — pick one. |
 | `vitePreset`                | Default-exports allowed in `vite.config.*`, `vite-env.d.ts` tolerated |
 | `astroPreset()`             | Async loader. Needs `eslint-plugin-astro` + `astro-eslint-parser`     |
 | `nestjsPreset`              | Unmutes class/decorator patterns that the base preset bans for Nest   |

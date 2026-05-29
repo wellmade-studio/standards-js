@@ -20,7 +20,15 @@ export const vitestPreset = {
     },
   },
   rules: {
-    'vitest/consistent-test-it': ['error', { fn: 'test', withinDescribe: 'it' }],
+    // No `consistent-test-it` default. Vitest treats `test` and `it` as
+    // aliases — the choice is preference, not correctness. Field
+    // adoption (bedrock-js, 2026-05-27) found bedrock used `test()`
+    // consistently while the rule defaulted to `it()` inside describes;
+    // auto-fix produced 137 rewrites that cascaded into 280+ no-undef
+    // and no-unsafe-call errors because the imports weren't updated.
+    // Teams pick a convention and stick with it; that's the only thing
+    // that matters here. Re-enable per-project if you want enforcement.
+
     'vitest/expect-expect': 'error',
     'vitest/max-nested-describe': ['error', { max: 2 }],
     'vitest/no-alias-methods': 'error',

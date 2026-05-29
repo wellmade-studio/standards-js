@@ -100,6 +100,18 @@ export const aiRailguardsTsPreset = {
   name: 'wellmade/ai-railguards-ts',
   files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
   rules: {
+    // --- `no-undef` belongs to TypeScript, not ESLint ---
+    // TS is the authority on scope checking and catches undefined-
+    // identifier references natively. ESLint's `no-undef` can't see
+    // TS type-only globals (e.g. `NodeJS.ErrnoException`, ambient
+    // module declarations) and produces false positives — bedrock-js
+    // hit 8+ such cases on first lint. typescript-eslint's recommended
+    // config explicitly disables this rule on TS files for the same
+    // reason. The AI-hallucination intent (catch made-up imports) is
+    // already covered by TS's noImplicitAny + strict-mode checks plus
+    // the `import-x/no-unresolved` rule from importsPreset.
+    'no-undef': 'off',
+
     // --- `any` discipline ---
     // The AI defaults to `any` when a generic would do. Errors out, with the
     // expected escape via `// eslint-disable-next-line ... -- <reason>`.

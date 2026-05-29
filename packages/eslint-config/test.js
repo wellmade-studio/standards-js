@@ -50,6 +50,38 @@ test('reactPreset allows PascalCase filenames (React component convention)', () 
   assert.deepEqual(exports.reactPreset.files, ['**/*.jsx', '**/*.tsx']);
 });
 
+test('vitestPreset does not enforce consistent-test-it (preference, not correctness)', () => {
+  assert.equal(
+    exports.vitestPreset.rules?.['vitest/consistent-test-it'],
+    undefined,
+    'vitest treats test() and it() as aliases — projects pick a convention, the preset should not impose one',
+  );
+});
+
+test('jestPreset does not enforce consistent-test-it (preference, not correctness)', () => {
+  assert.equal(
+    exports.jestPreset.rules?.['jest/consistent-test-it'],
+    undefined,
+    'jest treats test() and it() as aliases — projects pick a convention, the preset should not impose one',
+  );
+});
+
+test('aiRailguardsTsPreset disables no-undef on TS files (TS owns scope checking)', () => {
+  assert.equal(
+    exports.aiRailguardsTsPreset.rules?.['no-undef'],
+    'off',
+    'ESLint no-undef cannot see TS type-only globals; TS itself catches undefined-identifier refs',
+  );
+});
+
+test('aiRailguardsJsPreset keeps no-undef enabled (JS has no equivalent scope checker)', () => {
+  assert.equal(
+    exports.aiRailguardsJsPreset.rules?.['no-undef'],
+    'error',
+    'JS files lack a static scope checker; no-undef remains the hallucination canary there',
+  );
+});
+
 test('every preset has a stable `name`', () => {
   const named = [
     exports.browserPreset,

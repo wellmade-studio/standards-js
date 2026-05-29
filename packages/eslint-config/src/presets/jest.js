@@ -16,7 +16,13 @@ export const jestPreset = {
     globals: { ...globals.jest },
   },
   rules: {
-    'jest/consistent-test-it': ['error', { fn: 'test', withinDescribe: 'it' }],
+    // No `consistent-test-it` default. Jest treats `test` and `it` as
+    // aliases — the choice is preference, not correctness. Teams pick
+    // a convention and stick with it; that's the only thing that
+    // matters here. Re-enable per-project if you want enforcement.
+    // (Same call as the vitest preset, same reasoning — see that file
+    // for the full rationale.)
+
     'jest/expect-expect': 'error',
     'jest/max-nested-describe': ['error', { max: 2 }],
     'jest/no-alias-methods': 'error',
